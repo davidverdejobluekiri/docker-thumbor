@@ -16,7 +16,7 @@ server {
     }
 
     location ~* "^\/wsimgresize\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" {
-        rewrite "(?i)^\/wsimgresize\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" /unsafe/$3x$4/smart/$5 break;
+        rewrite "(?i)^\/wsimgresize\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" /unsafe/$2x$3/smart/$4 break;
         proxy_pass http://thumbor;
     }
 
