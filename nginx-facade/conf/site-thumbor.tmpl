@@ -11,12 +11,12 @@ server {
     }
 
     location ~* "^\/wsimgresize\/([a-zA-Z]+)\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" {
-	rewrite "^\/wsimgresize\/([a-zA-Z]+)\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" /unsafe/$3/$4/smart/$5 break;
+	rewrite "(?i)^\/wsimgresize\/([a-zA-Z]+)\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" /unsafe/$3x$4/smart/$5 break;
 	proxy_pass http://thumbor;
     }
 
     location ~* "^\/wsimgresize\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" {
-        rewrite "^\/wsimgresize\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" /unsafe/$3/$4/smart/$5 break;
+        rewrite "(?i)^\/wsimgresize\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" /unsafe/$3x$4/smart/$5 break;
         proxy_pass http://thumbor;
     }
 
