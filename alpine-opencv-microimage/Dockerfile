@@ -71,19 +71,11 @@ RUN mkdir /opt && cd /opt && \
     make install && \
     rm -rf /opt/opencv-${OPENCV_VERSION}
 
-RUN apk del \
+RUN apk update && \
+    apk del \
       build-base \
-      openblas-dev \
       unzip \
       wget \
       cmake \
-      libtbb \
-      libtbb-dev \
-      libjpeg \
-      libjpeg-turbo-dev \
-      libpng-dev \
-      jasper-dev \
-      tiff-dev \
-      libwebp-dev \
       clang-dev \
       linux-headers
