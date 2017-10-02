@@ -19,5 +19,5 @@ RUN rm /etc/nginx/conf.d/default.conf && \
     envsubst < "/etc/nginx/conf.d/site-thumbor.tmpl" > "/etc/nginx/conf.d/site-thumbor.conf" && \
     rm /etc/nginx/conf.d/site-thumbor.tmpl
 
-HEALTHCHECK --interval=5s --timeout=3s \
-  CMD curl -f http://localhost/hc || exit 1
+#HEALTHCHECK --interval=5s --timeout=3s \
+#  CMD curl -f http://localhost/hc || exit 1
