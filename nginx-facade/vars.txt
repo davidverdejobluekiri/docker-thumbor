@@ -1,0 +1,2 @@
+THUMBOR_SERVICE_NAME - docker thumbor service
+THUMBOR_SERVICE_PORT - docker thumbor port

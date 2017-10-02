@@ -1,0 +1,38 @@
+upstream thumbor {
+    server $THUMBOR_SERVICE_NAME:$THUMBOR_SERVICE_PORT;
+}
+
+server {
+    listen       80 default;
+    server_name  _;
+
+    location /hc {
+        stub_status;
+    }
+
+    location ~* "^\/wsimgresize\/([a-zA-Z]+)\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" {
+	rewrite "^\/wsimgresize\/([a-zA-Z]+)\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" /unsafe/$3/$4/smart/$5 break;
+	proxy_set_header Host $host;
+	proxy_set_header X-Real-IP $remote_addr;
+	proxy_pass http://thumbor;
+    }
+
+    location ~* "^\/wsimgresize\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" {
+        rewrite "^\/wsimgresize\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" /unsafe/$3/$4/smart/$5 break;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass http://thumbor;
+    }
+
+    location / {
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass http://thumbor;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+}
