@@ -1,4 +1,4 @@
-FROM davidverdejo/alpine-opencv-microimage
+FROM julianbei/alpine-opencv-microimage:p2-3.1
 
 MAINTAINER David Verdejo <david.verdejo@bluekiri.com>
 
