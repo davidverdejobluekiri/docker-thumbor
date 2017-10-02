@@ -12,21 +12,15 @@ server {
 
     location ~* "^\/wsimgresize\/([a-zA-Z]+)\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" {
 	rewrite "^\/wsimgresize\/([a-zA-Z]+)\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" /unsafe/$3/$4/smart/$5 break;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
 	proxy_pass http://thumbor;
     }
 
     location ~* "^\/wsimgresize\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" {
         rewrite "^\/wsimgresize\/([a-zA-Z]+)\/(\d+)\/(\d+)\/(.+)" /unsafe/$3/$4/smart/$5 break;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
         proxy_pass http://thumbor;
     }
 
     location / {
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
         proxy_pass http://thumbor;
     }
 
