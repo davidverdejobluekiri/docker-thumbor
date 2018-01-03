@@ -15,7 +15,12 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositor
         curl-dev \
         #zlib-dev \
         jpeg-dev \
-        openssl-dev && \
+        openssl-dev \
+	#opencv - test: python -c 'import cv2; print("Python: import cv2 - SUCCESS")'
+	openblas-dev \
+	libwebp-dev \
+	tiff-dev \ 
+	jasper-dev && \	
     pip install --use-wheel --no-cache-dir \
 	envtpl==0.5.3 \
 	pyremotecv==0.5.0 \
